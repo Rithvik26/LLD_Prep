@@ -1,0 +1,55 @@
+SOLID PRICIPLES
+
+S — Single Responsibility Principle (SRP)
+📌 Definition: A class should have only one reason to change.
+Bad: God class ReportGenerator doing generate + format + print.
+Good: Split into Report, ReportFormatter, ReportPrinter.
+✅ Benefits: modular, testable, easy to extend.
+
+O — Open/Closed Principle (OCP)
+📌 Definition: Classes should be open for extension but closed for modification.
+Example: Payment system
+Base interface: PaymentMethod (pay())
+Implementations: CreditCardPayment, UPIPayment, PayPalPayment
+PaymentProcessor depends only on abstraction.
+✅ Benefits: Add CryptoPayment without changing processor.
+
+
+L — Liskov Substitution Principle (LSP)
+📌 Definition: Subclasses must be replaceable for their parent type without breaking functionality.
+In the payment system, any PaymentMethod can replace another in PaymentProcessor.
+Violations would be if a subclass removes expected behavior (e.g., Square overriding Rectangle.setHeight() incorrectly).
+✅ Benefits: Polymorphism works correctly.
+
+
+I — Interface Segregation Principle (ISP)
+📌 Definition: Clients should not be forced to depend on methods they don’t use.
+Bad: NotificationService with send_email, send_sms, send_push → clients forced to implement all.
+Good: One clean interface NotificationSender.send().
+Implementations: EmailSender, SMSSender, PushSender.
+✅ Benefits: No fat interfaces, flexible implementations.
+
+
+D — Dependency Inversion Principle (DIP)
+📌 Definition: High-level modules should depend on abstractions, not on concrete implementations.
+Example: NotificationService depends on NotificationSender interface, not directly on EmailSender or SMSSender.
+Example: Logger depends on LogHandler interface, not directly on ConsoleHandler or FileHandler.
+✅ Benefits: Loosely coupled, easy to test, extend.
+
+
+
+✅ Quick Memory Hook
+
+S → Single job per class
+O → Add new features without changing old code
+L → Subclasses must behave like parents
+I → Small, specific interfaces
+D → Depend on abstractions, not implementations
+
+
+📌 Interview Tip
+When asked:
+👉 “How have you applied SOLID principles?”
+
+You can say:
+“I’ve practiced each principle with small examples. For instance, SRP with Report split into formatter and printer, OCP+LSP with a payment system, ISP+DIP with a notification system, and DIP with a logger. Each design follows SOLID, making code extensible, testable, and modular.”
